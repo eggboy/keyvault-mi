@@ -19,7 +19,9 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MANAGED_IDENTITY_CLIENT_ID
-              value: 
+              value:
+            - name: KEYVAULT_URI
+              value:
       restartPolicy: Always
   selector:
     matchLabels:
