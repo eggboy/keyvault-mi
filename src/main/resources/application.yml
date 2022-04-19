@@ -1,0 +1,21 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    com.azure: DEBUG
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-source-enabled: true
+          property-sources:
+            - name: app-secrets-vault
+              endpoint: ${KEYVAULT_URI}
+          credential:
+            client-id: ${MANAGED_IDENTITY_CLIENT_ID}
+            managed-identity-enabled: true
+

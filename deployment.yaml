@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keyvault-mi
+  labels:
+    app: keyvault-mi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: keyvault-mi
+      labels:
+        aadpodidbinding: jay-managedidentity
+        app: keyvault-mi
+    spec:
+      containers:
+        - name: keyvault-mi
+          image: eggboy/keyvault-mi:0.0.3
+          imagePullPolicy: Always
+          env:
+            - name: MANAGED_IDENTITY_CLIENT_ID
+              value: 
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: keyvault-mi
